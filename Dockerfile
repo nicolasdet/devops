@@ -1,3 +1,37 @@
+FROM php:7.2-apache
 
-FROM php:18.04
-RUN  php composer.phar install && php composer.phar self-update
+ARG XDEBUG_REMOTE_HOST
+
+RUN apt-get upgrade && \
+    apt-get -y update && \
+    apt-get install -y git zlib1g-dev && \
+## GD Configuration
+    apt-get install -y libpng-dev && \
+    docker-php-ext-install gd && \
+## Intl installation
+    apt-get install -y libicu-dev && \
+    docker-php-ext-install intl && \
+## PHP Extension
+    docker-php-ext-install zip pdo pdo_mysql bcmath gettext && \
+## Xdebug Install && configuration
+    pecl install xdebug-2.6.0 && \
+    docker-php-ext-enable xdebug && \
+## Clean
+    apt-get remove -y --purge software-properties-common && \
+    apt-get -y autoremove && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN a2enmod rewrite headers
+
+RUN sed -i 's#/var/www/html#/var/www/public#g' /etc/apache2/sites-available/000-default.conf && \
+    mv /var/www/html /var/www/public && \
+    echo "AllowEncodedSlashes On" >> /etc/apache2/apache2.conf
+
+RUN service apache2 restart
+
+WORKDIR /var/www/html
+
+COPY . .
+
+EXPOSE 80
