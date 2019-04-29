@@ -33,4 +33,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
+RUN php composer.phar install
+
 EXPOSE 80
