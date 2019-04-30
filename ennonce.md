@@ -20,3 +20,15 @@
   - UT
   - AT
   
+docker run --entrypoint /opt/sonar-runner-2.4/bin/sonar-runner \
+  -e SONAR_USER_HOME=/data/.sonar-cache \
+  -v `pwd`:/data -u `id -u` sebp/sonar-runner \
+    -Dsonar.host.url=https://sonarqube.esgi.io \
+    -Dsonar.login=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28 \
+    -Dsonar.projectKey=website-gary \
+    -Dsonar.sources=.
+
+
+
+##
+- 2e5559e1e0e5a06f39b47fcf7ba641b368de5d28
