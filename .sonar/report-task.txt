@@ -1,0 +1,6 @@
+projectKey=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28
+serverUrl=https://sonarqube.esgi.io
+serverVersion=7.7.0.23042
+dashboardUrl=https://sonarqube.esgi.io/dashboard?id=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28
+ceTaskId=AWpuPOE_vRv-gRc-TGnm
+ceTaskUrl=https://sonarqube.esgi.io/api/ce/task?id=AWpuPOE_vRv-gRc-TGnm
