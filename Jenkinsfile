@@ -5,9 +5,9 @@ pipeline {
         stage('build 1') {
             steps {
                 echo 'Building..'
-                sh composer install
-                sh docker login -u cn1991 -p Jawaqo65
-                sh docker run -p 80:80 cn1991/machinezend
+                sh 'composer install'
+                sh 'docker login -u cn1991 -p Jawaqo65'
+                sh 'docker run -p 80:80 cn1991/machinezend'
                 // Build docker image
                 // connection to registry
             }
