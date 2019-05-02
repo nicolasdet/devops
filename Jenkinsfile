@@ -1,8 +1,8 @@
 pipeline {
-    agent { dockerfile true }
-
+    agent any
+    def app
     stages {
-        stage('build 1') {
+        stage('Build') {
             steps {
                 echo 'Building..'
                 sh 'composer install'
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 // Test with SonarQubes
-                // test unitaire
+                // test
             }
         }
         stage('Deploy') {
