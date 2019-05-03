@@ -1,0 +1,6 @@
+projectKey=website-gary
+serverUrl=https://sonarqube.esgi.io
+serverVersion=7.7.0.23042
+dashboardUrl=https://sonarqube.esgi.io/dashboard?id=website-gary
+ceTaskId=AWp-IsOEFOBHAi7W9me2
+ceTaskUrl=https://sonarqube.esgi.io/api/ce/task?id=AWp-IsOEFOBHAi7W9me2
