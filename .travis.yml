@@ -44,6 +44,6 @@ deploy:
       branch: develop
   # deploy master to production
   - provider: script
-    script: bash ./deploy.sh
+    script: bash ./deploy_master.sh
     on:
       branch: master
