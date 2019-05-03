@@ -24,6 +24,7 @@ before_install:
   #- mkdir symfony
   - composer install
   - docker login -u cn1991 -p 53Ddwshb
+  - docker pull cn1991/machinezend
   - docker run -p 80:80 cn1991/machinezend -n c2n2t
 
 before_script:
