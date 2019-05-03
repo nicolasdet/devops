@@ -1,0 +1,43 @@
+
+sudo: required
+language: php
+
+php:
+  - 7.0
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.16.1
+
+services:
+  - docker
+addons:
+  apt:
+    packages:
+    - sshpass
+
+before_install:
+  #- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  #- chmod +x docker-compose
+  #- sudo mv docker-compose /usr/local/bin
+  #- docker-compose -v
+  #- docker -v
+  #- mkdir symfony
+  - composer install
+  - docker login -u cn1991 -p 53Ddwshb
+  - docker pull cn1991/machinezend:dev
+  - docker run -d --name c2n2t -p 80:80 cn1991/machinezend:dev
+
+before_script:
+  #- sudo /etc/init.d/mysql stop
+  
+script:
+  #- docker-compose -f docker-compose.travis.yml up -d --build
+  - docker exec -d c2n2t /var/www/html/vendor/bin/phpunit
+  #- docker-compose -f docker-compose.travis.yml ps
+  #- docker exec -d symfonyApp bin/console phpUnit
+
+deploy:
+    provider: script
+    script: bash ./deploy.sh
+    on:
+branch: develop
