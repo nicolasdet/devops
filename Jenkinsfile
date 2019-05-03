@@ -1,28 +1,27 @@
 pipeline {
-    agent { dockerfile true }
-
+    agent any
     stages {
-        stage('build 1') {
+        stage('Build') {
             steps {
-                echo 'Building..'
-                sh 'composer install'
-                sh 'docker login -u cn1991 -p Jawaqo65'
-                sh 'docker run -p 80:80 cn1991/machinezend'
-                // Build docker image
-                // connection to registry
+                script {
+                    def app
+
+                    app = docker.build("registry.esgi.io/garygitton/website", "-f build/dev/Dockerfile .")
+
+                    docker.withRegistry('https://registry.esgi.io', 'gitlab-registry-credentials-garygitton') {
+                        app.push("dev")
+                    }
+                }
             }
         }
-        stage('Test') {
+        stage('Static analysis') {
             steps {
                 echo 'Testing..'
-                // Test with SonarQubes
-                // test unitaire
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                // deploy to registry
             }
         }
     }

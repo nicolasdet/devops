@@ -1,12 +1,6 @@
 FROM php:7.2-apache
 
-RUN apt-get update \
- && apt-get install -y git zlib1g-dev \
- && docker-php-ext-install zip \
- && a2enmod rewrite \
- && sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf \
- && curl -sS https://getcomposer.org/installer \
-  | php -- --install-dir=/usr/local/bin --filename=composer
+ARG XDEBUG_REMOTE_HOST
 
 RUN apt-get upgrade && \
     apt-get -y update && \
@@ -38,5 +32,9 @@ RUN service apache2 restart
 WORKDIR /var/www/html
 
 COPY . .
+
+RUN php composer.phar require --dev phpunit/phpunit
+
+RUN php composer.phar update 
 
 EXPOSE 80
