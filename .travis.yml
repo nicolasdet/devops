@@ -39,6 +39,5 @@ script:
 
 deploy:
     provider: script
-    script: bash ./deploy.sh
     on:
-      branche: develop
+      all_branches: true
