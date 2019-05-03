@@ -24,7 +24,7 @@ before_install:
   #- mkdir symfony
   - composer install
   - docker login -u cn1991 -p 53Ddwshb
-  - docker pull cn1991/machinezend:dev
+  - docker pull cn1991/machinezend:dev --no-cache
   - docker run -d --name c2n2t -p 80:80 cn1991/machinezend:dev
 
 before_script:
@@ -32,8 +32,8 @@ before_script:
   
 script:
   #- docker-compose -f docker-compose.travis.yml up -d --build
-  - docker run --entrypoint /opt/sonar-runner-2.4/bin/sonar-runner -e SONAR_USER_HOME=/data/.sonar-cache -v `pwd`:/data -u `id -u` sebp/sonar-runner -Dsonar.host.url=https://sonarqube.esgi.io  -Dsonar.login=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28   -Dsonar.projectKey=website-gary  -Dsonar.sources=.
-  - docker exec -d c2n2t /var/www/html/vendor/bin/phpunit
+  - docker run --entrypoint /opt/sonar-runner-2.4/bin/sonar-runner -e SONAR_USER_HOME=/data/.sonar-cache -v `pwd`:/data -u `id -u` sebp/sonar-runner -Dsonar.host.url=https://sonarqube.esgi.io  -Dsonar.login=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28   -Dsonar.projectKey=website_c2n2t  -Dsonar.sources=.
+  #- docker exec -d c2n2t /var/www/html/vendor/bin/phpunit
   #- docker-compose -f docker-compose.travis.yml ps
   #- docker exec -d symfonyApp bin/console phpUnit
 
