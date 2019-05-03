@@ -1,1 +1,0 @@
- 2phpX@hr)module/Application/view/error/index.phtml

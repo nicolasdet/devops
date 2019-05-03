@@ -1,1 +1,0 @@
-! 2xmlX!hr	phpcs.xml
