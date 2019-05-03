@@ -25,7 +25,7 @@ before_install:
   - composer install
   - docker login -u cn1991 -p 53Ddwshb
   - docker pull cn1991/machinezend:dev
-  - docker run -p 80:80 cn1991/machinezend -n c2n2t
+  - docker run -p 80:80 cn1991/machinezend:dev -n c2n2t
 
 before_script:
   #- sudo /etc/init.d/mysql stop
