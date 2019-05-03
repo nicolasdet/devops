@@ -38,7 +38,12 @@ script:
   #- docker exec -d symfonyApp bin/console phpUnit
 
 deploy:
-    provider: script
+  - provider: script
     script: bash ./deploy.sh
     on:
-      all_branches: true
+      branch: develop
+  # deploy master to production
+  - provider: script
+    script: bash ./deploy.sh
+    on:
+      branch: master
