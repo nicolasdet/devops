@@ -3,7 +3,7 @@ sudo: required
 language: php
 
 php:
-  - nightly
+  - 7.0
 
 env:
   DOCKER_COMPOSE_VERSION: 1.16.1
@@ -22,7 +22,7 @@ before_install:
   #- docker-compose -v
   #- docker -v
   #- mkdir symfony
-  - composer require atoum/atoum
+  - composer install
   - docker login -u cn1991 -p Jawaqo65
   - dockerrun -p 80:80 cn1991/machinezend
 
