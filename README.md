@@ -4,7 +4,6 @@
 
 Une application Zend dans le but de faire des test de DevOPS
 
-
 ## Author
 
 Nicolas de Tiesenhausen

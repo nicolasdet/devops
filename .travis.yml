@@ -1,0 +1,37 @@
+sudo: required
+language: php
+
+php:
+  - 7.0
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.16.1
+
+services:
+  - docker
+addons:
+  apt:
+    packages:
+    - sshpass
+
+before_install:
+  - composer install
+  - docker login -u cn1991 -p 53Ddwshb
+  - docker pull cn1991/machinezend:dev
+  - docker run -d --name c2n2t -p 80:80 cn1991/machinezend:dev
+
+  
+script:
+  #- docker run --entrypoint /opt/sonar-runner-2.4/bin/sonar-runner -e SONAR_USER_HOME=/data/.sonar-cache -v `pwd`:/data -u `id -u` sebp/sonar-runner -Dsonar.host.url=https://sonarqube.esgi.io  -Dsonar.login=2e5559e1e0e5a06f39b47fcf7ba641b368de5d28   -Dsonar.projectKey=website_c2n2t  -Dsonar.sources=.
+  - docker exec -d c2n2t /var/www/html/vendor/bin/phpunit
+
+deploy:
+  - provider: script
+    script: bash ./deploy.sh
+    on:
+      branch: develop
+  # deploy master to production
+  - provider: script
+    script: bash ./deploy_master.sh
+    on:
+      branch: master

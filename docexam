@@ -1,0 +1,6 @@
+	
+	 		(GIT)		 	  (Build)	(Test)
+	dev - merge /branch	 =>    dev   => Unitaire  => Package dev => deploy 
+			 Develop	 				Static
+
+	prod - merge /brach prod => prod  =>  fonctionnel => package prod = Action humaine => prod
