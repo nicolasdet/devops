@@ -24,7 +24,7 @@ before_install:
   #- mkdir symfony
   - composer install
   - docker login -u cn1991 -p 53Ddwshb
-  - docker pull cn1991/machinezend:dev --no-cache
+  - docker pull cn1991/machinezend:dev
   - docker run -d --name c2n2t -p 80:80 cn1991/machinezend:dev
 
 before_script:
