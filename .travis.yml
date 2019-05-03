@@ -23,15 +23,16 @@ before_install:
   #- docker -v
   #- mkdir symfony
   - composer install
-  - docker login -u cn1991 -p Jawaqo65
-  - dockerrun -p 80:80 cn1991/machinezend
+  - docker login -u cn1991 -p 53Ddwshb
+  - docker run -p 80:80 cn1991/machinezend -n c2n2t
 
 before_script:
   #- sudo /etc/init.d/mysql stop
   
 script:
-  - docker-compose -f docker-compose.travis.yml up -d --build
-  - docker-compose -f docker-compose.travis.yml ps
+  #- docker-compose -f docker-compose.travis.yml up -d --build
+  - docker exec -d c2n2t /var/www/html/vendor/bin/phpunit
+  #- docker-compose -f docker-compose.travis.yml ps
   #- docker exec -d symfonyApp bin/console phpUnit
 
 deploy:
