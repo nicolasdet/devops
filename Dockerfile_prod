@@ -33,8 +33,4 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN php composer.phar require --dev phpunit/phpunit
-
-RUN php composer.phar update 
-
 EXPOSE 80
