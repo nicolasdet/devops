@@ -1,1 +1,1 @@
-sshpass -p 6JwQNU7E ssh -o StrictHostKeyChecking=no vps554131.ovh.net bash "develops_prod.bash";
+sshpass -p PASSWORD ssh -o StrictHostKeyChecking=no vps554131.ovh.net bash "develops_prod.bash";
